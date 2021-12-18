@@ -1,0 +1,34 @@
+name: bDuels
+version: '${project.version}'
+main: io.github.bilektugrul.bduels.BDuels
+api-version: 1.13
+prefix: bDuels
+authors: [ bilektugrul ]
+description: Acayip özelliklerle dolu mükemmel bir düello eklentisi!
+website: https://github.com/bilektugrul/bDuels-Wiki/wiki
+
+softdepend:
+  - PlaceholderAPI
+  - Vault
+  - HolographicDisplays
+  # Farklı dünyalar oluşturan eklentiler
+  - Multiverse-Core
+  - PlotSquared
+  - PlotMe
+
+commands:
+  bduels:
+    usage: /bduels <reload | save>
+  duel:
+    usage: /duel <oyuncu>
+  arena:
+    usage: /arena <sub command> <arena>
+  accept:
+    aliases: [kabulet, düellokabulet, duelkabulet]
+    usage: /accept
+  duelstats:
+    aliases: [bduelstats, bduelsstats, düellostats, duelistatistikleri, düelloistatistikleri, stats]
+  toggleduel:
+    aliases: [dd, düelloistekleri, duelrequests, toggleduelrequests]
+  leaderboards:
+    aliases: [leaderboard, sıralama, sıralamalar]

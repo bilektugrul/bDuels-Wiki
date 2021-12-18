@@ -1,0 +1,131 @@
+# bDuels PlaceholderAPI'yi destekler ve önerir. Binlerce farklı placeholderi rahatça kullanmak için kurmanızı öneririz.
+
+language: tr # Farklı dili içeren bir dosya oluşturursanız onun dilini yazabilirsiniz.
+
+custom-placeholders:
+  # Burada oluşturduğunuz placeholderleri bDuels'in her yerinde kullanabilirsiniz. (%<placeholder adı>%)
+  # PlaceholderAPI aracılığı ile başka eklentilerde de kullanabilirsiniz. (%bduels_custom_<placeholder adı>%)
+  prefix: '&8[&abDuels&8]&r'
+  #isim: içerik
+
+database:
+  enabled: true # true olarak ayarlarsanız istatistikler aşağıda ayarlanmış veritabanında tutulur.
+  database-type: FLAT # MYSQL veya FLAT
+                      # FLAT türü, oyuncuların istatistiklerini kendi veri dosyalarında tutar
+                      # MYSQL, MySQL veritabanını kullanır.
+  auto-save-interval: 30 # 30 dakikada bir istatistikleri kaydedip sıralamaları yeniler
+                         # değiştirip /bduels reload komutunu kullanırsanız süreç baştan başlar ve yeni ayar geçerli olur
+  mysql-settings:
+    user: <user>
+    url: jdbc:mysql://localhost:3306/<databasename>?useSSL=false&autoReConnect=true
+    password: <password>
+    table: bduelsstats
+
+titles: # Win mesajında title seçeneği kullanıldığında geçerli olacak ayarlar.
+  fade-in: 5
+  stay: 100
+  fade-out: 5
+
+teleport-to-spawn-on-join: # Eğer bu ayar true olarak kalırsa
+                           # sunucu çöktüğünde, duelarenas adlı dünyadaki
+                           # oyuncular (yani maçtaki oyuncular)
+                           # tekrar giriş yaptıklarında spawna ışınlanacaklardır.
+  enabled: true
+  duel-world: duelarenas # düello arenalarının bulunduğu dünyanın adı
+  spawn-world: world # ana dünyanızın adı, oyuncular bu dünyanın spawnına ışınlanacak
+
+in-game-settings:
+  # modlar: ONLY_WITH_PERMISSION, NEVER, EVERYONE
+  # ONLY_WITH_PERMISSION: sadece yetkisi olan kişiler aşağıdakileri yapabilir
+  # EVERYONE: herkes aşağıdakileri yapabilir
+  # NEVER: kimse yapamaz
+  can-break-blocks: ONLY_WITH_PERMISSION # sadece bduels.can-break-blocks yetkisi olanlar maç sırasında blok kırabilir
+  can-place-blocks: ONLY_WITH_PERMISSION # sadece bduels.can-place-blocks yetkisi olanlar maç sırasında blok kırabilir
+                                         # maç sırasında arenalara koyulan bloklar maç bittiğinde temizlenmez. dikkatli olun.
+  can-use-command: ONLY_WITH_PERMISSION  # sadece bduels.can-use-command yetkisi olanlar maç sırasında komut kullanabilir
+  can-drop-item: ONLY_WITH_PERMISSION    # sadece bduels.can-drop-item yetkisi olanlar maç sırasında yere eşya atabilir
+  can-teleport: ONLY_WITH_PERMISSION     # sadece bduels.can-teleport yetkisi olanlar maç sırasında başka bir yere ışınlanabilir
+                                         # sadece enter pearl ile olan ışınlanmalar için geçerlidir
+
+whitelisted-blocks: # maçlarda koyulabilecek bloklar, bu bloklar maç sonrasında arenadan kaldırılır.
+                    # arenalarınızın içinde bu blokları kullanmayın!
+  - FIRE
+  - COBBLESTONE
+  - WOOD
+  - LAVA
+  - WATER
+  - STATIONARY_WATER
+  - STATIONARY_LAVA
+
+start-countdown: 5 # Maç başlarken kaç saniye geri sayım yapılacağına dair ayar.
+other-stats-require-permission: true # true olarak kalırsa oyuncular
+                                     # /duelstats komutuyla başkalarının istatistiklerine bakmak istediklerinde
+                                     # bduels.otherstats yetkisine sahip olmaları gerekir.
+
+request-gui-name: 'Duel - %player% vs %opponent%' # Düello menüsünün ismi
+
+request-cancel-item: # Düello menüsünde düelloyu iptal etmek için kullanılan eşyanın ayarları.
+  material: BARRIER
+  name: '&cDüelloyu iptal et'
+  lore:
+    - ' '
+    - '&cTıklayarak düelloyu iptal edebilirsin.'
+    - ' '
+
+mid-item: # Düello menüsünü ortadan bölecek eşyanın ayarları.
+  material: BLACK_STAINED_GLASS_PANE
+  name: '&f'
+  lore:
+    - ' '
+    - '&a%sender% &7<&m------&r&7> &c%opponent%'
+    - ' '
+
+not-ready-item: # Düello menüsünde oyuncular hazır değilken gözükecek eşyanın ayarları.
+  material: RED_STAINED_GLASS_PANE
+  name: '&cHazır değil'
+  lore:
+    - ' '
+    - '&3%who% &6hazır değil.'
+    - ' '
+
+ready-item: # Düello menüsünde oyuncular hazırken gözükecek eşyanın ayarları.
+  material: GREEN_STAINED_GLASS_PANE
+  name: '&aHazır'
+  lore:
+    - ' '
+    - '&3%who% &6hazır.'
+    - ' '
+
+money-bet:
+  1:
+    item: GRAY_DYE
+    money-to-add: 10
+    name: '&b10 TL'
+    lore:
+      - '&eTıklayarak iddiaaya'
+      - '&b10 TL'
+      - '&eekle'
+  2:
+    item: PINK_DYE
+    money-to-add: 100
+    name: '&b100 TL'
+    lore:
+      - '&eTıklayarak iddiaaya'
+      - '&b100 TL'
+      - '&eekle'
+  3:
+    item: LIGHT_BLUE_DYE
+    money-to-add: 1000
+    name: '&b1000 TL'
+    lore:
+      - '&eTıklayarak iddiaaya'
+      - '&b1000 TL'
+      - '&eekle'
+  4:
+    item: LIME_DYE
+    money-to-add: 10000
+    name: '&b10000 TL'
+    lore:
+      - '&eTıklayarak iddiaaya'
+      - '&b10000 TL'
+      - '&eekle'
